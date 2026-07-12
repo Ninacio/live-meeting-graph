@@ -77,6 +77,12 @@ def main() -> int:
     group = parser.add_mutually_exclusive_group()
     group.add_argument("--mock", action="store_true")
     group.add_argument("--live", action="store_true")
+    parser.add_argument(
+        "--min-f1",
+        type=float,
+        default=None,
+        help="Exit non-zero if any aggregate F1 falls below this (CI regression guard)",
+    )
     args = parser.parse_args()
     mode = "live" if args.live else "mock" if args.mock else "auto"
 
@@ -112,11 +118,15 @@ def main() -> int:
             )
 
     print("-" * len(header))
+    failed = False
     for kind, (matched, n_pred, n_exp) in totals.items():
         p, r, f = prf(matched, n_pred, n_exp)
         print(f"{'AGGREGATE':<22} {kind:<10} {p:>6.2f} {r:>6.2f} {f:>6.2f}   {matched}/{n_pred}/{n_exp}")
+        if args.min_f1 is not None and f < args.min_f1:
+            failed = True
+            print(f"  !! {kind} aggregate F1 {f:.2f} is below --min-f1 {args.min_f1}")
     print(f"\nExtractor: {extractor_name}")
-    return 0
+    return 1 if failed else 0
 
 
 if __name__ == "__main__":
