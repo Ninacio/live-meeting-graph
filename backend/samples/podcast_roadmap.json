@@ -1,0 +1,22 @@
+{
+  "title": "Roadmap planning sync",
+  "entries": [
+    {"t": 4, "speaker": "Jo", "text": "Welcome back. Today let's talk about the mobile app rewrite."},
+    {"t": 16, "speaker": "Tariq", "text": "The React Native prototype hits 60fps on mid-range devices now. The bridge overhead concerns turned out to be manageable."},
+    {"t": 38, "speaker": "Lena", "text": "I'm not convinced a full rewrite is the right call. We could incrementally migrate screen by screen inside the existing native shell."},
+    {"t": 58, "speaker": "Tariq", "text": "Incremental migration means maintaining two build systems for a year. The team is small."},
+    {"t": 76, "speaker": "Lena", "text": "A big-bang rewrite has killed more apps than slow builds have. But if we timebox it hard, fair enough."},
+    {"t": 95, "speaker": "Jo", "text": "We agreed to a timeboxed six-month rewrite with a go or no-go review at month three."},
+    {"t": 118, "speaker": "Jo", "text": "Okay, moving on to the offline mode."},
+    {"t": 128, "speaker": "Lena", "text": "Offline is the top request from field teams. Sync conflicts are the hard part, not storage."},
+    {"t": 149, "speaker": "Tariq", "text": "Last-write-wins is simple and covers ninety percent of cases. CRDTs are overkill for form data."},
+    {"t": 170, "speaker": "Lena", "text": "Last-write-wins with a conflict log the user can review. Works for me."},
+    {"t": 188, "speaker": "Jo", "text": "So we decided to build offline mode with last-write-wins sync and a visible conflict log."},
+    {"t": 210, "speaker": "Jo", "text": "Next up: the plugin API."},
+    {"t": 220, "speaker": "Tariq", "text": "Three enterprise customers are blocked on it. They want webhooks and a read API at minimum."},
+    {"t": 241, "speaker": "Lena", "text": "I don't think we should promise a full plugin runtime this year. Webhooks and a read API are a quarter of the work and most of the value."},
+    {"t": 263, "speaker": "Tariq", "text": "Fair enough, runtime can wait. Webhooks first."},
+    {"t": 278, "speaker": "Jo", "text": "Let's go with webhooks plus the read API for Q4, full plugin runtime revisited next year."},
+    {"t": 300, "speaker": "Jo", "text": "Good session. I'll write up the roadmap doc."}
+  ]
+}

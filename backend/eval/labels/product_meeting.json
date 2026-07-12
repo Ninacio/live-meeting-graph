@@ -1,0 +1,15 @@
+{
+  "transcript": "samples/product_meeting.txt",
+  "topics": [
+    "Q3 launch timeline",
+    "Onboarding flow redesign",
+    "Pricing tiers",
+    "Analytics dashboard"
+  ],
+  "decisions": [
+    "Hold July 28 as the target launch date with August 4 as fallback",
+    "Ship the static onboarding flow at launch and add the animation in the first post-launch sprint",
+    "Launch with three self-serve pricing tiers plus an enterprise contact option",
+    "Scope the dashboard MVP to events, cohorts, and funnels with Priya owning the rollup table"
+  ]
+}

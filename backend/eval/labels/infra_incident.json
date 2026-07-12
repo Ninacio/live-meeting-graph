@@ -1,0 +1,14 @@
+{
+  "transcript": "samples/infra_incident.txt",
+  "topics": [
+    "Incident timeline",
+    "Retry policy",
+    "Connection pool isolation",
+    "Alerting improvements"
+  ],
+  "decisions": [
+    "Implement exponential backoff with a ten-minute cap and per-endpoint circuit breakers",
+    "Split the connection pools per service with limits set after load testing",
+    "Add a rate-of-change alert on queue depth and update the runbook with webhook dashboards"
+  ]
+}

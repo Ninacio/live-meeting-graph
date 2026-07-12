@@ -1,0 +1,27 @@
+[00:05] Maya: Morning everyone, we have a lot to cover. Let's start with the Q3 launch timeline.
+[00:18] Dev: Engineering is tracking toward the last week of July. The payment integration is the long pole.
+[00:34] Priya: Data migration is ready, we finished the dry run on Friday.
+[00:49] Maya: Great. Sam, where is design on the launch assets?
+[01:02] Sam: Landing page is done, app store screenshots are in review. No blockers from my side.
+[01:15] Dev: One risk: if the payment vendor slips their sandbox again, we lose a week.
+[01:31] Maya: Noted. We agreed to hold July 28 as the target launch date, with August 4 as fallback.
+[01:50] Maya: Okay, moving on to the onboarding flow redesign.
+[02:04] Sam: The new three-step flow tested really well. Completion went from 61 to 78 percent in the prototype study.
+[02:22] Dev: I don't think we should ship the animated walkthrough in step two. It adds a heavy dependency and two weeks of work.
+[02:40] Sam: The animation is what tested well though. Users called it out specifically.
+[02:55] Dev: We can ship the static version first and layer the animation in after launch.
+[03:10] Sam: Fair enough, staged rollout works if we commit to the follow-up.
+[03:24] Maya: So we agreed to ship the static onboarding flow at launch and add the animation in the first post-launch sprint.
+[03:45] Maya: Next up: pricing tiers.
+[03:58] Priya: The usage data supports three tiers. Ninety percent of accounts cluster into three clear bands.
+[04:15] Dev: I'd push for four tiers, we leave money on the table with heavy API users.
+[04:31] Priya: I'm not convinced a fourth tier is worth the support cost. The heavy-API cluster is forty accounts.
+[04:50] Dev: Forty accounts paying five times as much. We could handle them with a custom enterprise contact form instead.
+[05:08] Priya: A contact-us enterprise tier instead of a fixed fourth tier? Works for me.
+[05:22] Maya: Good. Let's go with three self-serve tiers plus an enterprise contact option.
+[05:41] Maya: Last item, let's talk about the analytics dashboard.
+[05:55] Priya: The dashboard MVP needs event volume, retention cohorts, and funnel views. Everything else can wait.
+[06:12] Dev: Agreed on scope, but the cohort query is slow on the current schema. It needs a rollup table.
+[06:29] Priya: I can own the rollup table, it's mostly the same work as the migration tooling.
+[06:44] Maya: Perfect. We decided to scope the dashboard MVP to events, cohorts, and funnels, with Priya owning the rollup table.
+[07:01] Maya: That's everything. Recap goes out this afternoon.

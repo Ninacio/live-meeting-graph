@@ -1,0 +1,13 @@
+{
+  "transcript": "samples/podcast_roadmap.json",
+  "topics": [
+    "Mobile app rewrite",
+    "Offline mode",
+    "Plugin API"
+  ],
+  "decisions": [
+    "Timeboxed six-month rewrite with a go or no-go review at month three",
+    "Build offline mode with last-write-wins sync and a visible conflict log",
+    "Ship webhooks plus the read API for Q4 and revisit the full plugin runtime next year"
+  ]
+}

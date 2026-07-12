@@ -1,0 +1,21 @@
+[00:03] Rosa: Thanks for joining the postmortem. Let's start with the incident timeline.
+[00:15] Ken: Alerts fired at 02:14 UTC when the queue depth crossed 50k. Paging worked, I was on within six minutes.
+[00:33] Ana: Root cause was the retry storm from the webhook service. Every failed delivery retried immediately with no backoff.
+[00:51] Ken: By 02:40 the database connection pool was exhausted, which took down the API for everyone.
+[01:08] Rosa: Total customer-facing downtime was 47 minutes. Okay, moving on to the retry policy.
+[01:24] Ana: I want exponential backoff with jitter, capped at one hour, on every outbound webhook.
+[01:40] Ken: I don't think a one-hour cap is right. Customers with flaky endpoints would see deliveries delayed for ages.
+[01:58] Ana: Better delayed than a retry storm taking the whole platform down again.
+[02:14] Ken: What about capping at ten minutes but adding a circuit breaker per endpoint? Persistent failures stop retrying entirely.
+[02:31] Ana: Backoff plus per-endpoint circuit breaker. Okay, I'm on board with that.
+[02:45] Rosa: So we agreed to implement exponential backoff with a ten-minute cap and per-endpoint circuit breakers.
+[03:04] Rosa: Next up: connection pool isolation.
+[03:17] Ken: The webhook workers and the API share one pool today. That's why the blast radius was total.
+[03:33] Ana: Separate pools per service, hard limits on each. The API should never starve because a background job went wild.
+[03:50] Ken: Agreed in principle, but sizing the split needs load testing before we commit numbers.
+[04:06] Rosa: We decided to split the connection pools per service, with limits to be set after load testing next week.
+[04:25] Rosa: Last thing, let's talk about alerting improvements.
+[04:38] Ken: The queue-depth alert fired 26 minutes after the storm started. We need a rate-of-change alert, not just a threshold.
+[04:55] Ana: And the on-call runbook didn't mention the webhook service at all. I had to find the dashboard from memory.
+[05:12] Rosa: We agreed to add a rate-of-change alert on queue depth and update the runbook with the webhook dashboards.
+[05:30] Rosa: Action items are assigned in the doc. Thanks all.
