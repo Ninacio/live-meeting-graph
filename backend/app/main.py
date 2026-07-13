@@ -78,7 +78,7 @@ def get_graph() -> Graph:
         return _current_graph
     stored = db.load_latest_graph()
     if stored is None:
-        raise HTTPException(status_code=404, detail="No graph yet — POST /api/ingest first")
+        raise HTTPException(status_code=404, detail="No graph yet - POST /api/ingest first")
     return stored
 
 

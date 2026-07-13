@@ -2,7 +2,7 @@
 
 SQLite by default (zero setup); set DATABASE_URL=postgresql://... to run the
 identical schema on Postgres. If graph queries outgrow SQL (multi-hop
-traversals, pathfinding across meetings), Neo4j is the planned swap — see
+traversals, pathfinding across meetings), Neo4j is the planned swap - see
 CLAUDE.md.
 """
 from __future__ import annotations

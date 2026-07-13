@@ -2,13 +2,13 @@
 
 Two extractors share one interface (``chunk, known_topics -> ChunkExtraction``):
 
-  * ``LLMExtractor`` — calls the Claude API with structured outputs
+  * ``LLMExtractor`` - calls the Claude API with structured outputs
     (``client.messages.parse`` validated against the ``ChunkExtraction``
     Pydantic schema). The prompt includes the topic names already in the
     graph so the model reuses existing names instead of minting
-    near-duplicates — this is what lets later chunks link to or contradict
+    near-duplicates - this is what lets later chunks link to or contradict
     earlier nodes.
-  * ``MockExtractor`` — deterministic cue-phrase rules, so the whole
+  * ``MockExtractor`` - deterministic cue-phrase rules, so the whole
     pipeline (and the frontend demo) runs without an API key. Expect far
     lower recall than the LLM path.
 
@@ -30,7 +30,7 @@ transcript at a time and extract structured knowledge from it.
 Extract:
 - topics: the subjects actually discussed in this chunk. Use short canonical names \
 (2-5 words). If a topic in this chunk is the same as one in the known-topics list, \
-reuse that exact name — never invent a near-duplicate. Use related_to to link a topic \
+reuse that exact name - never invent a near-duplicate. Use related_to to link a topic \
 to the earlier topic(s) it follows from.
 - decisions: only concrete commitments the group made ("we agreed to X", "let's go \
 with Y", "decided to Z"). Not proposals, not open questions.
@@ -65,7 +65,7 @@ class LLMExtractor:
 
 
 # ---------------------------------------------------------------------------
-# Mock extractor — cue-phrase rules
+# Mock extractor - cue-phrase rules
 # ---------------------------------------------------------------------------
 
 _TOPIC_CUES = [
@@ -107,7 +107,7 @@ def _clean_topic(raw: str) -> str:
 
 
 class MockExtractor:
-    """Rule-based extractor: cheap, deterministic, key-free — and much dumber
+    """Rule-based extractor: cheap, deterministic, key-free - and much dumber
     than the LLM. It only sees explicit cue phrases."""
 
     def __init__(self):

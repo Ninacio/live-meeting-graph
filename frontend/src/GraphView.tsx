@@ -82,7 +82,7 @@ function toRfNode(n: GraphNode, x: number, y: number): Node {
     ],
     data: {
       label: (
-        <div title={n.summary + (n.speakers.length ? `\n— ${n.speakers.join(", ")}` : "")}>
+        <div title={n.summary + (n.speakers.length ? `\n- ${n.speakers.join(", ")}` : "")}>
           {NODE_PREFIX[n.type]}
           {n.label.length > 46 ? n.label.slice(0, 44) + "…" : n.label}
         </div>

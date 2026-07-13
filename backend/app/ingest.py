@@ -1,9 +1,9 @@
 """Transcript ingestion: parse raw transcripts and chunk them for extraction.
 
 Supported input formats:
-  * Plain text — one utterance per line: ``[HH:MM:SS] Speaker: text``
+  * Plain text - one utterance per line: ``[HH:MM:SS] Speaker: text``
     (the ``[timestamp]`` prefix is optional).
-  * JSON — ``{"title": str, "entries": [{"t": seconds, "speaker": str, "text": str}]}``
+  * JSON - ``{"title": str, "entries": [{"t": seconds, "speaker": str, "text": str}]}``
 
 Chunking closes a chunk on a speaker-turn boundary once it exceeds either
 ``max_turns`` utterances or ``max_seconds`` of meeting time, so each chunk is a

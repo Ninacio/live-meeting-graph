@@ -147,7 +147,7 @@ class GraphBuilder:
             )
             node_id = self._next_id("x")
             label = f"{dis.speaker_a} vs {dis.speaker_b}"
-            summary = f"{dis.speaker_a}: {dis.position_a} — {dis.speaker_b}: {dis.position_b}"
+            summary = f"{dis.speaker_a}: {dis.position_a} - {dis.speaker_b}: {dis.position_b}"
             if dis.resolved and dis.resolution:
                 summary += f" (resolved: {dis.resolution})"
             self.graph.nodes.append(

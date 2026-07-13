@@ -1,12 +1,12 @@
 # Live Meeting Knowledge Graph
 
-Turn a meeting transcript into a **branching knowledge graph** — topics,
+Turn a meeting transcript into a **branching knowledge graph** - topics,
 decisions, and disagreements as nodes; *leads-to / about / contradicts /
-resolves* as edges — rendered as an animated force-directed canvas that replays
+resolves* as edges - rendered as an animated force-directed canvas that replays
 the meeting chunk by chunk.
 
 Phase 1 is offline/batch: feed in a transcript file, watch the graph grow in
-the browser. (Streaming ingestion and multiplayer viewing are later phases —
+the browser. (Streaming ingestion and multiplayer viewing are later phases -
 see [CLAUDE.md](CLAUDE.md) for the data model and roadmap.)
 
 ## Quick start (no API key needed)
@@ -44,9 +44,9 @@ cd backend
 uvicorn app.main:app --reload --port 8000
 ```
 
-- `POST /api/ingest` — `{"text": "...", "format": "text|json", "title": "...", "mode": "auto|live|mock"}` → graph JSON
-- `POST /api/ingest/file` — multipart upload of a `.txt`/`.json` transcript
-- `GET /api/graph` — latest graph (the Vite dev server proxies `/api` here; the
+- `POST /api/ingest` - `{"text": "...", "format": "text|json", "title": "...", "mode": "auto|live|mock"}` → graph JSON
+- `POST /api/ingest/file` - multipart upload of a `.txt`/`.json` transcript
+- `GET /api/graph` - latest graph (the Vite dev server proxies `/api` here; the
   frontend falls back to the static `graph.json` when the server isn't running)
 
 Graphs are persisted to SQLite (`meeting_graph.db`) by default; set
@@ -76,10 +76,10 @@ meeting). Model is `claude-opus-4-8` by default, override with
 
 | Extractor | Cost (per 1M tokens in/out) | Quality | When to use |
 |---|---|---|---|
-| `claude-opus-4-8` (default) | $5 / $25 | Best — reliably catches implicit decisions and subtle disagreements | Default; a 1-hour meeting (~60 chunks) costs roughly $0.30–0.80 |
+| `claude-opus-4-8` (default) | $5 / $25 | Best - reliably catches implicit decisions and subtle disagreements | Default; a 1-hour meeting (~60 chunks) costs roughly $0.30–0.80 |
 | `claude-sonnet-5` | $3 / $15 (intro $2 / $10) | Near-Opus on structured extraction | High-volume use |
 | `claude-haiku-4-5` | $1 / $5 | Noticeably weaker on disagreements/implicit decisions | Cheap iteration on pipeline mechanics |
-| Rule-based mock | free | Cue phrases only — misses anything unstated | Demos, tests, CI |
+| Rule-based mock | free | Cue phrases only - misses anything unstated | Demos, tests, CI |
 
 A local model (spaCy NER + heuristics) was considered and deferred: topics are
 somewhat tractable locally, but decision and disagreement detection are
@@ -99,7 +99,7 @@ Compares extracted topics/decisions against hand labels in `eval/labels/`
 precision/recall/F1 per transcript and aggregate.
 
 Current scores on the three bundled samples: mock extractor **1.00 / 1.00 /
-1.00** (topics and decisions). Take that number with salt — the samples were
+1.00** (topics and decisions). Take that number with salt - the samples were
 authored alongside the mock's cue list, so it's a ceiling, not an estimate.
 The eval exists to measure the **live** extractor and future, unseen
 transcripts; add real-world transcripts to `samples/` + `eval/labels/` to make

@@ -8,7 +8,7 @@ async function loadGraph(): Promise<MeetingGraph> {
     const api = await fetch("/api/graph");
     if (api.ok) return api.json();
   } catch {
-    /* backend not running — fine */
+    /* backend not running - fine */
   }
   const stat = await fetch("/graph.json");
   if (!stat.ok) {
@@ -38,7 +38,7 @@ export default function App() {
       .then((g) => {
         setGraph(g);
         setVisibleChunk(0);
-        setPlaying(true); // replay the meeting on load — the graph grows in
+        setPlaying(true); // replay the meeting on load - the graph grows in
       })
       .catch((e) => setError(String(e.message ?? e)));
   }, []);
